@@ -23,8 +23,11 @@ RUN flutter config --enable-web
 # Copy files to container and build
 RUN mkdir /app/
 COPY . /app/
+COPY ./assets /app/build/web/assets
+
 WORKDIR /app/
 RUN flutter build web
+
 
 # Stage 2 - Create the run-time image
 FROM nginx:1.21.1-alpine

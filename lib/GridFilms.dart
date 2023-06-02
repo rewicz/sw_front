@@ -27,8 +27,12 @@ class _GridWidgetState extends State<GridWidget> {
     });
     try {
       if (response.statusCode == 200) {
-        // Odpowiedź sukcesu
-        gridData = json.decode(response.body);
+        // Odpowiedź
+        print(response);
+        setState(() {
+          gridData = json.decode(response.body);
+        });
+        print(gridData);
 
       } else {
         // Obsługa błędu
@@ -54,6 +58,7 @@ class _GridWidgetState extends State<GridWidget> {
         ),
         itemBuilder: (BuildContext context, int index) {
           final item = gridData[index];
+          print(item);
           return GridTile(
             child: InkWell(
               onTap: () {
@@ -71,7 +76,7 @@ class _GridWidgetState extends State<GridWidget> {
                     fit: StackFit.expand,
                     children: [
                       Image.asset(
-                        '${item['data_json']['episode_id']}.png', // Ścieżka do pliku obrazka w folderze "assets"
+                        '${item['data_json']['episode_id']}.PNG', // Ścieżka do pliku obrazka w folderze "assets"
                         fit: BoxFit.cover,
                       ),
                       Align(
